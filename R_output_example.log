@@ -1,0 +1,55 @@
+
+
+> 
+> ## Load the code for the analysis:
+>   source("h://Bender//20160610_Project2_Code.R")
+> 
+> ## Read the data:
+> data2 = read.csv("h:/Bender/OneSimulatedData.csv")
+> 
+> ## Run the analysis:
+> 
+> ## Analysis of epilepsy data with Poisson and AR(1) assumptions
+>    PoisAR = EndResults(y ~ trt + base + age + period, "AR(1)", "Poisson", data2, data2$subject, data2$period, rep(0,6))
+There were 50 or more warnings (use warnings() to see the first 50)
+>    PoisAR
+[[1]]
+                            
+Log-Likelihood: -1646.251784
+AIC:             3304.503569
+BIC:             3323.560467
+
+[[2]]
+                  Estimate        Std.err          Wald        Pr(>|W|)
+(Intercept)  0.72270417187 0.104517175663   47.81297782 4.688804900e-12
+trt         -0.17171464291 0.036371554622   22.28901792 2.345441436e-06
+base         0.02309605518 0.000380189636 3690.41383250 0.000000000e+00
+age          0.02117779801 0.003066370111   47.69934962 4.968581102e-12
+period      -0.03341998768 0.005253166144   40.47345671 1.993052390e-10
+
+[[3]]
+          Estimate       Std.err
+alpha 0.3408256416 0.03947015904
+
+> 
+> ## Analysis of epilepsy data with Poisson and Markov assumptions
+>   PoisMark = EndResults(y ~ trt + base + age + period, "Markov", "Poisson", data2, data2$subject, data2$period, rep(0,6))
+There were 50 or more warnings (use warnings() to see the first 50)
+>   PoisMark
+[[1]]
+                            
+Log-Likelihood: -1639.470105
+AIC:             3290.940209
+BIC:             3309.997107
+
+[[2]]
+                  Estimate         Std.err          Wald        Pr(>|W|)
+(Intercept)  0.71669173402 0.1013768401280   49.97896871 1.553979168e-12
+trt         -0.18267655518 0.0349556783088   27.31053191 1.732651055e-07
+base         0.02314908776 0.0003656670552 4007.70820916 0.000000000e+00
+age          0.02179556206 0.0029472459250   54.68942965 1.411093464e-13
+period      -0.03542756665 0.0053159410302   44.41425054 2.657452036e-11
+
+[[3]]
+          Estimate       Std.err
+alpha 0.5414033986 0.03449927741
